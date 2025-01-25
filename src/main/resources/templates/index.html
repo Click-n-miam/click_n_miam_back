@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Click'n'Miam - Options list</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <div th:switch="${options}">
+        <h2 th:case="null">No options yet!</h2>
+        <div th:case="*">
+            <h2>Options</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="option : ${options}">
+                    <td th:text="${option.getId()}"></td>
+                    <td th:text="${option.getPrice()}"></td>
+                    <td th:text="${option.getDescription()}"></td>
+                    <td th:text="${option.getName()}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${option.getId()})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${option.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/formAdd">Add a new option</a></p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Click'n'Miam - Option add</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<form method="post" th:action="@{/addOption}" th:object="${option}">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Name">
+
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description" placeholder="Description">
+
+    <label for="price">Price</label>
+    <input type="number" name="price" id="price" placeholder="Price">
+
+    <input type="submit" value="Add User">
+</form>
+
+</body>
+</html>
