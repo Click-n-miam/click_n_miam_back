@@ -17,43 +17,43 @@ public class OptionController {
         this.optionRepository = optionRepository;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/option/list")
     public String showOptionList(Model model)
     {
         model.addAttribute("options", optionRepository.findAll());
-        return "index";
+        return "option/list";
     }
 
-    @GetMapping("/formAdd")
+    @GetMapping("/option/formAdd")
     public String formAdd(Model model)
     {
-        return "add";
+        return "option/add";
     }
 
-    @PostMapping("/addOption")
+    @PostMapping("/option/addOption")
     public String addOption(@Valid Option option, BindingResult bindingResult, Model model)
     {
         if(bindingResult.hasErrors())
         {
-            return "add";
+            return "option/add";
         }
         optionRepository.save(option);
 
-        return "redirect:/index";
+        return "redirect:/option/index";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/option/edit/{id}")
     public String showOption(@PathVariable("id") Integer id, Model model)
     {
         model.addAttribute("option", optionRepository.findById(id).orElseThrow(()->new RuntimeException("Option " + id + " not found") ) );
-        return "edit";
+        return "option/edit";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/option/delete/{id}")
     public String deleteOption(@PathVariable("id") Integer id, Model model)
     {
         Option option = optionRepository.findById(id).orElseThrow(()->new RuntimeException("Option " + id + " not found") );
         optionRepository.delete(option);
-        return "redirect:/index";
+        return "redirect:/option/index";
     }
 }

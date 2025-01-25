@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Click'n'Miam - Options list</title>
+    <title>Order Terminal Backend</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
 </head>
-<body>
 
-    <div th:switch="${options}">
-        <h2 th:case="null">No options yet!</h2>
-        <div th:case="*">
-            <h2>Options</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>price</th>
-                    <th>description</th>
-                    <th>name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="option : ${options}">
-                    <td th:text="${option.getId()}"></td>
-                    <td th:text="${option.getPrice()}"></td>
-                    <td th:text="${option.getDescription()}"></td>
-                    <td th:text="${option.getName()}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${option.getId()})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${option.id})}">Delete</a></td>
-                </tr>
-                </tbody>
-            </table>
+<body class="bg-white text-gray-800">
+
+<!-- Header -->
+<div th:include="fragments/header :: header"></div>
+
+<!-- Navigation Bar -->
+<div th:include="fragments/navbar :: navbar"></div>
+
+<!-- Main Content -->
+<main class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 - Current Orders -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold">Commandes en cours</h3>
+                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les commandes</button>
+            </div>
+
+            <!-- Card 2 - Menu Management -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold">Gestion du Menu</h3>
+                <p class="mt-2 text-gray-600">Ajoutez ou modifiez des éléments de votre menu.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer le menu</button>
+            </div>
+
+            <!-- Card 3 - Item Management -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold">Gestion des Articles</h3>
+                <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les articles</button>
+            </div>
         </div>
-        <p><a href="/formAdd">Add a new option</a></p>
     </div>
+</main>
 
+<!-- Footer -->
+<div th:include="fragments/footer :: footer"></div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
 </body>
+
 </html>
