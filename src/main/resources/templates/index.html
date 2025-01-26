@@ -23,27 +23,23 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Card 1 - line 1 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des commandes : ' + ${orders_count}"></h3>
-                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les commandes</button>
-            </div>
-
-            <!-- Card 2 - line 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
                 <h3 class="text-green-600 text-xl font-semibold">Gestion du Menu</h3>
                 <p class="mt-2 text-gray-600">Ajoutez ou modifiez des éléments de votre menu.</p>
                 <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer le menu</button>
             </div>
 
+            <!-- Card 2 - line 1 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold"> Gestion des plats</h3>
+                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les plats</button>
+            </div>
+
             <!-- Card 3 - line 1 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des options : ' + ${options_count}"></h3>
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des ingredients : ' + ${ingredients_count}"></h3>
                 <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">
-                    <a th:href="@{/option/list}">
-                        Gérer les options
-                    </a>
-                </button>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les ingredients</button>
             </div>
         </div>
     </div>
@@ -52,16 +48,20 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Card 1 - line 2 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des plats : ' + ${orders_count}"></h3>
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des commandes : ' + ${orders_count}"></h3>
                 <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les plats</button>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les commandes</button>
             </div>
 
             <!-- Card 2 - line 2 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des ingredients : ' + ${options_count}"></h3>
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des options : ' + ${options_count}"></h3>
                 <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les ingredients</button>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">
+                    <a th:href="@{/option/list}">
+                        Gérer les options
+                    </a>
+                </button>
             </div>
         </div>
     </div>

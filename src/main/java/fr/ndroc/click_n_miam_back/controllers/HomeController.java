@@ -1,5 +1,6 @@
 package fr.ndroc.click_n_miam_back.controllers;
 
+import fr.ndroc.click_n_miam_back.interfaces.IngredientRepository;
 import fr.ndroc.click_n_miam_back.interfaces.OptionRepository;
 import fr.ndroc.click_n_miam_back.interfaces.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,12 @@ public class HomeController {
 
     private final OptionRepository optionRepository;
     private final OrderRepository orderRepository;
+    private final IngredientRepository ingredientRepository;
 
-    public HomeController(OptionRepository optionRepository, OrderRepository orderRepository) {
+    public HomeController(OptionRepository optionRepository, OrderRepository orderRepository, IngredientRepository ingredientRepository) {
         this.optionRepository = optionRepository;
         this.orderRepository = orderRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     @RequestMapping(value={"", "/", "home"})
@@ -28,6 +31,8 @@ public class HomeController {
 
         model.addAttribute("options_count", optionRepository.count());
         model.addAttribute("orders_count", orderRepository.count());
+        model.addAttribute("ingredients_count", ingredientRepository.count());
+
         return "index.html";
     }
   
