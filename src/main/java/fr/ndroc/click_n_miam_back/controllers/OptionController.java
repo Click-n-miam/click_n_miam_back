@@ -39,7 +39,7 @@ public class OptionController {
         }
         optionRepository.save(option);
 
-        return "redirect:/option/index";
+        return "redirect:/option/list";
     }
 
     @GetMapping("/option/edit/{id}")
@@ -54,6 +54,6 @@ public class OptionController {
     {
         Option option = optionRepository.findById(id).orElseThrow(()->new RuntimeException("Option " + id + " not found") );
         optionRepository.delete(option);
-        return "redirect:/option/index";
+        return "redirect:/option/list";
     }
 }

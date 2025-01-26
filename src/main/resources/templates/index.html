@@ -19,30 +19,85 @@
 
 <!-- Main Content -->
 <main class="py-10">
-    <div class="max-w-7xl mx-auto px-4">
+    <div class="max-w-7xl mx-auto px-4 mb-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 - Current Orders -->
+            <!-- Card 1 - line 1 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold">Commandes en cours</h3>
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des commandes : ' + ${orders_count}"></h3>
                 <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
                 <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les commandes</button>
             </div>
 
-            <!-- Card 2 - Menu Management -->
+            <!-- Card 2 - line 1 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
                 <h3 class="text-green-600 text-xl font-semibold">Gestion du Menu</h3>
                 <p class="mt-2 text-gray-600">Ajoutez ou modifiez des éléments de votre menu.</p>
                 <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer le menu</button>
             </div>
 
-            <!-- Card 3 - Item Management -->
+            <!-- Card 3 - line 1 -->
             <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold">Gestion des Articles</h3>
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des options : ' + ${options_count}"></h3>
                 <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les articles</button>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">
+                    <a th:href="@{/option/list}">
+                        Gérer les options
+                    </a>
+                </button>
             </div>
         </div>
     </div>
+
+    <div class="max-w-7xl mx-auto px-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 - line 2 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des plats : ' + ${orders_count}"></h3>
+                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les plats</button>
+            </div>
+
+            <!-- Card 2 - line 2 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des ingredients : ' + ${options_count}"></h3>
+                <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les ingredients</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>
+
+        <!-- Tableau des commandes -->
+        <div class="overflow-x-auto shadow-md rounded-lg bg-white">
+            <table class="min-w-full table-auto text-left">
+                <thead class="bg-gray-200">
+                <tr>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">ID Commande</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Nom de l'Étudiant</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Date</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Montant</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Actions</th>
+                </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                <tr th:each="commande : ${commandes}">
+                    <td class="py-3 px-6 text-sm">{[{ commande.id }]}</td>
+                    <td class="py-3 px-6 text-sm">{[{ commande.nomEtudiant }]}</td>
+                    <td class="py-3 px-6 text-sm">{[{ commande.date }]}</td>
+                    <td class="py-3 px-6 text-sm">{[{ commande.montant }]} €</td>
+                    <td class="py-3 px-6 text-sm">
+                        <a href="#" class="text-blue-600 hover:text-blue-800">Modifier</a> |
+                        <a href="#" class="text-red-600 hover:text-red-800">Supprimer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </main>
 
 <!-- Footer -->
