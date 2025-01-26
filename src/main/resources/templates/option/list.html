@@ -25,7 +25,13 @@
 
         <div th:case="*">
             <h1 class="text-3xl font-semibold text-center mb-6">Liste des Options</h1>
-            <p><a href="/option/formAdd">Add a new option</a></p>
+            <p class="mb-8 mt-8">
+                <button class="mt-4 bg-orange-600 text-white py-1 px-2 rounded-lg hover:bg-green-500 transition border-2">
+                    <a href="/option/formAdd">
+                        Ajouter une option +
+                    </a>
+                </button>
+            </p>
 
             <div class="overflow-x-auto shadow-md rounded-lg bg-white">
                 <table class="min-w-full table-auto text-left">
@@ -45,8 +51,16 @@
                         <td class="py-3 px-6 text-sm" th:text="${option.getDescription()}"></td>
                         <td class="py-3 px-6 text-sm" th:text="${option.getPrice()} + '€'"></td>
                         <td class="py-3 px-6 text-sm">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Modifier</a> |
-                            <a th:href="@{/option/delete/{id}(id = ${option.getId()})}" class="text-red-600 hover:text-red-800">Supprimer</a>
+                            <button class="mt-4 text-green-600 py-1 px-2 rounded-lg hover:bg-green-500 hover:text-white transition border-2">
+                                <a th:href="@{/option/edit/{id}(id = ${option.getId()})}">
+                                    Modifier
+                                </a>
+                            </button>
+                            <button class="mt-4 text-orange-600 py-1 px-2 rounded-lg hover:bg-orange-500 hover:text-white transition border-2">
+                                <a th:href="@{/option/delete/{id}(id = ${option.getId()})}">
+                                    Supprimer
+                                </a>
+                            </button>
                         </td>
                     </tr>
                     </tbody>

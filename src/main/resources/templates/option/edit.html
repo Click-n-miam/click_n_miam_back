@@ -3,24 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Click'n'Miam - Option edit</title>
-    <script src="https://cdn.tailwindcss.com"></script>>
+    <title>Order Terminal Backend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
 </head>
-<body>
-<form>
-    <label for="option_id">ID</label>
-    <input type="number" name="option_id" id="option_id" th:value="${option.getId()}">
 
-    <label for="option_name">Name</label>
-    <input type="text" name="option_name" id="option_name" th:value="${option.getName()}">
+<body class="bg-white text-gray-800">
 
-    <label for="option_description">Description</label>
-    <input type="text" name="option_description" id="option_description" th:value="${option.getDescription()}">
+<!-- Header -->
+<div th:include="fragments/header :: header"></div>
 
-    <label for="option_price">Price</label>
-    <input type="number" name="option_price" id="option_price" th:value="${option.getPrice()}">
-</form>
+<!-- Navigation Bar -->
+<div th:include="fragments/navbar :: navbar"></div>
 
+<!-- Main Content -->
+<main class="py-10">
+
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-center mb-6">Détails de l'option</h1>
+
+        <form th:action="@{/option/update/{id}(id = ${option.getId()})}" th:object="${option}" method="post">
+            <div class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="name" class="text-sm font-medium text-gray-700">Nom de l'option</label>
+                    <input type="text" id="name" name="name" th:value="${option.getName()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le nom de l'option" required>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="description" class="text-sm font-medium text-gray-700">Description</label>
+                    <input type="text" id="description" name="description" th:value="${option.getDescription()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez la description" required>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="price" class="text-sm font-medium text-gray-700">Prix (€)</label>
+                    <input type="number" id="price" name="price" th:value="${option.getPrice()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant" step="0.01" required>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <a th:href="@{/option/list}" class="text-gray-600 hover:text-gray-800">Annuler</a>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</main>
+
+<!-- Footer -->
+<div th:include="fragments/footer :: footer"></div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
 </body>
+
 </html>

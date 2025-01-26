@@ -17,7 +17,7 @@ public class OptionController {
         this.optionRepository = optionRepository;
     }
 
-    @GetMapping("/option/list")
+    @GetMapping(value={"/option", "/option/list"})
     public String showOptionList(Model model)
     {
         model.addAttribute("options", optionRepository.findAll());
@@ -30,7 +30,7 @@ public class OptionController {
         return "option/add";
     }
 
-    @PostMapping("/option/addOption")
+    @PostMapping("/option/add")
     public String addOption(@Valid Option option, BindingResult bindingResult, Model model)
     {
         if(bindingResult.hasErrors())
@@ -47,6 +47,13 @@ public class OptionController {
     {
         model.addAttribute("option", optionRepository.findById(id).orElseThrow(()->new RuntimeException("Option " + id + " not found") ) );
         return "option/edit";
+    }
+
+    @PostMapping("/option/update/{id}")
+    public String updateOption(@Valid Option option, BindingResult bindingResult, Model model)
+    {
+        optionRepository.save(option);
+        return "redirect:/option/list";
     }
 
     @GetMapping("/option/delete/{id}")

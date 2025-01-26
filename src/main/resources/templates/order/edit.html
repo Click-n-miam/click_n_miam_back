@@ -20,28 +20,28 @@
 <main class="py-10">
 
     <div class="max-w-6xl mx-auto p-6">
-        <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>
+        <h1 class="text-3xl font-semibold text-center mb-6">Détails de la commande</h1>
 
-        <form th:action="@{/option/add}" th:object="${option}" method="post">
+        <form th:action="@{/order/update/{id}(id = ${order.getId()})}" th:object="${order}" method="post">
             <div class="space-y-4">
                 <div class="flex flex-col">
-                    <label for="name" class="text-sm font-medium text-gray-700">Nom de l'option</label>
-                    <input type="text" id="name" name="name" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le nom de l'option" required>
+                    <label for="reference" class="text-sm font-medium text-gray-700">Référence de la commande</label>
+                    <input type="text" id="reference" name="reference" th:value="${order.getReference()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" readonly>
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="description" class="text-sm font-medium text-gray-700">Description</label>
-                    <input type="text" id="description" name="description" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez la description" required>
+                    <label for="email" class="text-sm font-medium text-gray-700">Email de l'étudiant</label>
+                    <input type="text" id="email" name="email" th:value="${order.getEmail()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" readonly>
                 </div>
 
                 <div class="flex flex-col">
                     <label for="price" class="text-sm font-medium text-gray-700">Prix (€)</label>
-                    <input type="number" id="price" name="price" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant" step="0.01" required>
+                    <input type="number" id="price" name="price" th:value="${order.getPrice()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" readonly>
                 </div>
 
                 <div class="flex justify-end space-x-4">
-                    <a th:href="@{/option/list}" class="text-gray-600 hover:text-gray-800">Annuler</a>
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>
+                    <a th:href="@{/order}" class="text-gray-600 hover:text-gray-800">Annuler</a>
+                    <!--<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>-->
                 </div>
             </div>
         </form>
