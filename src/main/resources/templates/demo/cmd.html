@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-4">
+        <h2 class="text-lg font-bold mb-4">La Borne Gourmande</h2>
+        <ul>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2">Tableau de bord</li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2">Plats</li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2">Desserts</li>
+            <li class="p-2 bg-gray-200 rounded">Commandes</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <h1 class="text-2xl font-bold mb-4">Gestion des Commandes</h1>
+        <div class="bg-white rounded shadow p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold">Commande #1739656529154</h2>
+                <span class="bg-yellow-200 text-yellow-700 px-3 py-1 rounded">⏳ Pending</span>
+            </div>
+            <p class="text-gray-600">Table 12 • 22:55:29</p>
+            <div class="mt-4">
+                <p class="text-gray-800"><span class="font-bold text-orange-500">2x</span> Coq au Vin - 49.00€</p>
+                <p class="text-gray-800"><span class="font-bold text-orange-500">1x</span> Crème Brûlée - 8.90€</p>
+            </div>
+            <div class="border-t my-4"></div>
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">Total</span>
+                <span class="text-orange-500 font-bold text-lg">57.90€</span>
+            </div>
+            <div class="flex gap-4 mt-4">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded">Préparer</button>
+                <button class="bg-red-500 text-white px-4 py-2 rounded">Annuler</button>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

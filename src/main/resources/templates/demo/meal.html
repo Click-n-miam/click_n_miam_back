@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Plats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-4">
+        <h2 class="text-lg font-bold mb-4">La Borne Gourmande</h2>
+        <ul>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2">Tableau de bord</li>
+            <li class="p-2 bg-gray-200 rounded mb-2">Plats</li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2">Desserts</li>
+            <li class="p-2 hover:bg-gray-200 rounded">Commandes</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Gestion des Plats</h1>
+            <button class="bg-orange-500 text-white px-4 py-2 rounded">+ Ajouter</button>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white rounded shadow overflow-hidden">
+                <img src="https://source.unsplash.com/400x250/?steak,fries" alt="Coq au Vin" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h2 class="font-bold">Coq au Vin</h2>
+                    <p class="text-gray-600">Poulet braisé au vin rouge, lardons et champignons</p>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="text-orange-500 font-bold">24.50€</span>
+                        <div class="flex gap-2">
+                            <button class="text-gray-500 hover:text-black">✏️</button>
+                            <button class="text-gray-500 hover:text-black">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded shadow overflow-hidden">
+                <img src="https://source.unsplash.com/400x250/?ratatouille" alt="Ratatouille Provençale" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h2 class="font-bold">Ratatouille Provençale</h2>
+                    <p class="text-gray-600">Légumes du soleil mijotés aux herbes</p>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="text-orange-500 font-bold">18.90€</span>
+                        <div class="flex gap-2">
+                            <button class="text-gray-500 hover:text-black">✏️</button>
+                            <button class="text-gray-500 hover:text-black">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded shadow overflow-hidden">
+                <img src="https://source.unsplash.com/400x250/?salmon" alt="Magret de Canard" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h2 class="font-bold">Magret de Canard</h2>
+                    <p class="text-gray-600">Magret grillé, sauce aux fruits rouges</p>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="text-orange-500 font-bold">26.90€</span>
+                        <div class="flex gap-2">
+                            <button class="text-gray-500 hover:text-black">✏️</button>
+                            <button class="text-gray-500 hover:text-black">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
