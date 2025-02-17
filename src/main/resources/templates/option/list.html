@@ -9,36 +9,27 @@
 <body class="bg-gray-100">
 <div class="flex h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-md p-4">
-        <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
-        <ul>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/"><i class="nav-icon fas fa-users"></i>Tableau de bord</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded"><a href="/order">Commandes</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="~#">Plats</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="#">Desserts</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/ingredient">Ingrédients</a></li>
-            <li class="p-2 bg-gray-200 rounded mb-2"><a href="/option">Options</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/">Paramètres</a></li>
-        </ul>
-    </aside>
+    <aside  class="w-64 bg-white shadow-md p-4" th:include="fragments/sidebar :: sidebar"></aside>
 
     <!-- Main Content -->
     <main class="flex-1 p-6">
         <div class="flex justify-between items-center mb-4">
-            <h1 class="text-2xl font-bold">Gestion des options</h1>
 
-            <div class="mt-6 mb-6 text-left">
+            <div class="relative w-full bg-gradient-to-r from-indigo-500 to-blue-500 text-white p-6 mb-5 flex justify-between items-center rounded-lg shadow-md">
+                <h1 class="text-2xl font-bold">Gestion des options</h1>
+
                 <button class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
                     <a href="/option/formAdd">
                         Ajouter une option
                     </a>
                 </button>
             </div>
+
         </div>
         <div class="grid grid-cols-3 gap-6">
             <!-- Card -->
             <div th:each="option : ${options}" class="bg-white rounded shadow overflow-hidden">
-                <img src="https://source.unsplash.com/400x250/?steak,fries" alt="Coq au Vin" class="w-full h-40 object-cover">
+                <img src="https://www.emballagefute.com/3343-large_default/kit-couvert-en-bois.jpg" alt="Image" class="w-full h-40 object-cover">
                 <div class="p-4">
                     <h2 class="font-bold" th:text="${option.getName()}">Nom / Titre</h2>
                     <p class="text-gray-600" th:text="${option.getDescription()}">Description.</p>
@@ -46,10 +37,10 @@
                         <span class="text-orange-500 font-bold" th:text="${option.getPrice() + '€'}">Prix</span>
                         <div class="flex gap-2">
                             <a th:href="@{/option/edit/{id}(id = ${option.getId})}">
-                                <button class="text-gray-500 hover:text-black">✏️</button>
+                                <button class="text-gray-500 hover:text-black" title="Éditer">✏️</button>
                             </a>
-                            <a class="text-sm text-red-600" th:href="@{/option/delete/{id}(id = ${option.getId()})}">
-                                <button class="text-gray-500 hover:text-black">🗑️</button>
+                            <a th:href="@{/option/delete/{id}(id = ${option.getId()})}">
+                                <button class="text-gray-500 hover:text-black" title="Supprimer">🗑️</button>
                             </a>
                         </div>
                     </div>

@@ -8,20 +8,8 @@
 </head>
 <body class="bg-gray-100">
 <div class="flex h-screen">
-
     <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-md p-4">
-        <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
-        <ul>
-            <li class="p-2 bg-gray-200 rounded mb-2"><a href="/"><i class="nav-icon fas fa-users"></i>Tableau de bord</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded"><a href="/order">Commandes</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="~#">Plats</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="#">Desserts</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/ingredient">Ingrédients</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/option">Options</a></li>
-            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/">Paramètres</a></li>
-        </ul>
-    </aside>
+    <aside  class="w-64 bg-white shadow-md p-4" th:include="fragments/sidebar :: sidebar"></aside>
 
     <!-- Main Content -->
     <main class="flex-1 p-6">

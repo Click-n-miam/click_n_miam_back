@@ -35,29 +35,28 @@
                 </button>
             </div>
         </div>
-        <div class="grid grid-cols-3 gap-6">
-            <form th:action="@{/ingredient/update/{id}(id = ${ingredient.getId()})}" th:object="${ingredient}" method="post">
-                <div class="space-y-4">
 
-                    <div class="flex flex-col">
-                        <label for="name" class="text-sm font-medium text-gray-700">Nom de l'ingredient</label>
-                        <input type="text" id="name" name="name" th:value="${ingredient.getName()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le nom de l'ingredient" required>
-                    </div>
+        <form th:action="@{/ingredient/update/{id}(id = ${ingredient.getId()})}" th:object="${ingredient}" method="post" class="max-w-md bg-white p-6 rounded-lg shadow-md space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nom de l'ingrédient</label>
+                <input type="text" id="name" name="name" th:value="${ingredient.getName()}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Entrez le nom de l'ingrédient">
+            </div>
 
-                    <div class="flex flex-col">
-                        <label for="allergen" class="text-sm font-medium text-gray-700">Est-ce un allergène ?</label>
-                        <input type="checkbox" id="allergen" name="allergen"
-                               class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-                               th:checked="${ingredient.getAllergen()}" />
-                    </div>
+<!--                <div>-->
+<!--                    <label for="price" class="block text-sm font-medium text-gray-700">Prix</label>-->
+<!--                    <input type="text" id="price" name="price" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="0,00">-->
+<!--                </div>-->
 
-                    <div class="flex justify-end space-x-4">
-                        <a th:href="@{/ingredient/list}" class="text-gray-600 hover:text-gray-800">Annuler</a>
-                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            <div class="flex items-center">
+                <input type="checkbox" id="allergen" name="allergen" th:checked="${ingredient.getAllergen()}" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                <label for="allergen" class="ml-2 text-sm text-gray-700">Cet ingrédient est un allergène ?</label>
+            </div>
+
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Sauvegarder
+            </button>
+        </form>
+
     </main>
 </div>
 </body>

@@ -1,3 +1,39 @@
 <div th:fragment="sidebar">
+    <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
+    <div class="flex justify-center mb-4">
+        <img th:src="@{/images/logo.jpg}" alt="Click'n'Miam Logo" class="h-12">
+    </div>
+    <ul class="space-y-2">
+        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
+            <i class="fas fa-tachometer-alt"></i>
+            <a href="/">Tableau de bord</a>
+        </li>
+        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
+            <i class="fas fa-wrench"></i>
+            <a href="/">Paramètres</a>
+        </li>
+        <hr>
+        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
+            <i class="fas fa-receipt"></i>
+            <a href="/order">Commandes</a>
+        </li>
+        <hr>
+        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
+            <i class="fas fa-utensils"></i>
+            <a href="#">Plats</a>
+        </li>
+        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
+            <i class="fas fa-ice-cream"></i>
+            <a href="#">Desserts</a>
+        </li>
+        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
+            <i class="fas fa-seedling"></i>
+            <a href="/ingredient">Ingrédients</a>
+        </li>
+        <li class="p-2 flex items-center space-x-2 bg-gray-200 rounded border-l-4 border-orange-500">
+            <i class="fas fa-cogs"></i>
+            <a href="/option">Options</a>
+        </li>
+    </ul>
 
 </div>

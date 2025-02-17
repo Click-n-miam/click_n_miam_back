@@ -35,31 +35,26 @@
                 </button>
             </div>
         </div>
-        <div class="grid grid-cols-3 gap-6">
-            <form th:action="@{/option/update/{id}(id = ${option.getId()})}" th:object="${option}" method="post">
-                <div class="space-y-4">
-                    <div class="flex flex-col">
-                        <label for="name" class="text-sm font-medium text-gray-700">Nom de l'option</label>
-                        <input type="text" id="name" name="name" th:value="${option.getName()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le nom de l'option" required>
-                    </div>
+        <form th:action="@{/option/update/{id}(id = ${option.getId()})}" th:object="${option}" method="post" class="max-w-md bg-white p-6 rounded-lg shadow-md space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nom de l'option</label>
+                <input type="text" id="name" name="name" th:value="${option.getName()}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Entrez le nom de l'option">
+            </div>
 
-                    <div class="flex flex-col">
-                        <label for="description" class="text-sm font-medium text-gray-700">Description</label>
-                        <input type="text" id="description" name="description" th:value="${option.getDescription()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez la description" required>
-                    </div>
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description de l'option</label>
+                <input type="text" id="description" name="description" th:value="${option.getDescription()}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Entrez la description de l'option">
+            </div>
 
-                    <div class="flex flex-col">
-                        <label for="price" class="text-sm font-medium text-gray-700">Prix (€)</label>
-                        <input type="number" id="price" name="price" th:value="${option.getPrice()}" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant" step="0.01" required>
-                    </div>
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700">Prix</label>
+                <input type="text" id="price" name="price" th:value="${option.getPrice()}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="0,00">
+            </div>
 
-                    <div class="flex justify-end space-x-4">
-                        <a th:href="@{/option/list}" class="text-gray-600 hover:text-gray-800">Annuler</a>
-                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Sauvegarder
+            </button>
+        </form>
     </main>
 </div>
 </body>
