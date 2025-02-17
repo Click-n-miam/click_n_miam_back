@@ -33,19 +33,19 @@ public class HomeController {
         model.addAttribute("orders_count", orderRepository.count());
         model.addAttribute("ingredients_count", ingredientRepository.count());
 
-        return "demo/index.html";
+        return "index";
     }
 
     @RequestMapping("demo/meal")
     public String displayMealPage(Model model) {
 
-        return "demo/meal.html";
+        return "demo/meal";
     }
 
     @RequestMapping("demo/cmd")
     public String displayCmdPage(Model model) {
 
-        return "demo/cmd.html";
+        return "demo/cmd";
     }
   
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Terminal Backend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-white text-gray-800">
+
+<!-- Header -->
+<div th:include="fragments/header :: header"></div>
+
+<!-- Navigation Bar -->
+<div th:include="fragments/navbar :: navbar"></div>
+
+<!-- Main Content -->
+<main class="py-10">
+
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>
+
+        <!-- Tableau des commandes -->
+        <div class="overflow-x-auto shadow-md rounded-lg bg-white">
+            <table class="min-w-full table-auto text-left">
+                <thead class="bg-gray-200">
+                <tr>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">ID Commande</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Nom de l'Étudiant</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Date</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Montant</th>
+                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Actions</th>
+                </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                <tr th:each="commande : ${commandes}">
+                    <td class="py-3 px-6 text-sm"></td>
+                    <td class="py-3 px-6 text-sm"></td>
+                    <td class="py-3 px-6 text-sm"></td>
+                    <td class="py-3 px-6 text-sm"></td>
+                    <td class="py-3 px-6 text-sm">
+                        <a href="#" class="text-blue-600 hover:text-blue-800">Modifier</a> |
+                        <a href="#" class="text-red-600 hover:text-red-800">Supprimer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<div th:include="fragments/footer :: footer"></div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+</body>
+
+</html>

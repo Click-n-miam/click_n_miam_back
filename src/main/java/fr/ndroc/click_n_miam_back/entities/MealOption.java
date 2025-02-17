@@ -6,17 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "meal_options")
 public class MealOption {
 
-    @EmbeddedId
-    private MealOptionId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
-    @MapsId("mealId") // Associe mealId à Meal
-    @JoinColumn(name = "meal_id")
+    @JoinColumn(name = "meal_id", nullable = false)
     private Meal meal;
 
     @ManyToOne
-    @MapsId("optionId") // Associe optionId à Option
-    @JoinColumn(name = "option_id")
+    @JoinColumn(name = "option_id", nullable = false)
     private Option option;
 
     @Override

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Terminal Backend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-white text-gray-800">
+
+<!-- Header -->
+<div th:include="fragments/header :: header"></div>
+
+<!-- Navigation Bar -->
+<div th:include="fragments/navbar :: navbar"></div>
+
+<!-- Main Content -->
+<main class="py-10">
+    <div class="max-w-7xl mx-auto px-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 - line 1 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold">Gestion du Menu</h3>
+                <p class="mt-2 text-gray-600">Ajoutez ou modifiez des éléments de votre menu.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer le menu</button>
+            </div>
+
+            <!-- Card 2 - line 1 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold"> Gestion des plats</h3>
+                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les plats</button>
+            </div>
+
+            <!-- Card 3 - line 1 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des ingredients : ' + ${ingredients_count}"></h3>
+                <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les ingredients</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 - line 2 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des commandes : ' + ${orders_count}"></h3>
+                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les commandes</button>
+            </div>
+
+            <!-- Card 2 - line 2 -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des options : ' + ${options_count}"></h3>
+                <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
+                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">
+                    <a th:href="@{/option/list}">
+                        Gérer les options
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<div th:include="fragments/footer :: footer"></div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+</body>
+
+</html>

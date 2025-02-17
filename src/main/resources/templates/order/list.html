@@ -1,109 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Terminal Backend</title>
+    <title>Tableau de bord</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
 </head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
 
-<body class="bg-white text-gray-800">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-4">
+        <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
+        <ul>
+            <li class="p-2 bg-gray-200 rounded mb-2"><a href="/"><i class="nav-icon fas fa-users"></i>Tableau de bord</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded"><a href="/order">Commandes</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="~#">Plats</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="#">Desserts</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/ingredient">Ingrédients</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/option">Options</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/">Paramètres</a></li>
+        </ul>
+    </aside>
 
-<!-- Header -->
-<div th:include="fragments/header :: header"></div>
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
 
-<!-- Navigation Bar -->
-<div th:include="fragments/navbar :: navbar"></div>
+        <h1 class="text-2xl font-bold mb-4">Gestion des Commandes</h1>
 
-<!-- Main Content -->
-<main class="py-10">
+        <div th:switch="${orders}">
+            <h1 th:case="null" class="text-3xl font-semibold text-center mb-6">Aucune commandes.</h1>
 
-    <div class="py-8">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-6 text-center">
-            <!-- Bloc 1 -->
-            <div class="p-4">
-                <p class="text-3xl font-bold" th:text="${orders_count} + '+'">0+</p>
-                <p class="text-sm text-gray-400">Toutes les commandes passées</p>
-            </div>
-            <!-- Bloc 2 -->
-            <div class="p-4">
-                <p class="text-3xl font-bold">3%</p>
-                <p class="text-sm text-gray-400">Flat platform fee</p>
-            </div>
-            <!-- Bloc 3 -->
-            <div class="p-4">
-                <p class="text-3xl font-bold">99.9%</p>
-                <p class="text-sm text-gray-400">Uptime guarantee</p>
-            </div>
-            <!-- Bloc 4 -->
-            <div class="p-4">
-                <p class="text-3xl font-bold">$70M</p>
-                <p class="text-sm text-gray-400">Paid out to creators</p>
-            </div>
-        </div>
-    </div>
+            <div th:case="*">
+                <div th:each="order : ${orders}">
+                    <div class="bg-white rounded shadow p-6 mb-5">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-bold" th:text="${order.getReference()}">Référence</h2>
 
-    <div class="py-10 max-w-6xl mx-auto p-6" th:switch="${orders}">
-        <h1 th:case="null" class="text-3xl font-semibold text-center mb-6">Aucune Option</h1>
-
-        <div th:case="*">
-            <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>
-            <ul role="list" class="divide-y divide-gray-100">
-                <li th:each="order : ${orders}" >
-                    <a th:href="@{/order/edit/{id}(id=${order.getId()})}" class="flex justify-between gap-x-6 py-5">
-                        <div class="flex min-w-0 gap-x-4">
-
-                            <div class="relative inline-flex items-center justify-center w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                <span class="font-medium text-gray-600 dark:text-gray-300" th:text="${order.getEmail()[0]} + ${order.getEmail()[6]} + ${order.getEmail()[7]} + ${order.getEmail()[8]}">NP</span>
+                            <div th:switch="${order.getPaid()}">
+                                <div th:case="true">
+                                    <span class="bg-green-200 text-green-700 px-3 py-1 rounded">⏳ Payée</span>
+                                </div>
+                                <div th:case="false">
+                                    <span class="bg-yellow-200 text-yellow-700 px-3 py-1 rounded">⏳ En attente</span>
+                                </div>
+                                <div th:case="*">
+                                    <span class="bg-red-200 text-red-700 px-3 py-1 rounded">⏳ Inconnu</span>
+                                </div>
                             </div>
 
-                            <div class="min-w-0 flex-auto">
-                                <p class="text-sm/6 font-semibold text-gray-900" th:text="${order.getReference()}">Référence</p>
-                                <p class="mt-1 truncate text-xs/5 text-gray-500" th:text="${order.getEmail()}">Email</p>
-                            </div>
                         </div>
-                        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                            <p class="mt-1 text-xs/5 text-gray-500"><time datetime="2023-01-23T13:23Z" th:text="${order.getDatetime_order()}">Date & Heure commande</time></p>
-                            <p class="text-sm/6 text-gray-900" th:text="${order.getPay_method()}">Mode de paiement</p>
-                            <div class="mt-1 flex items-center gap-x-1.5" th:switch="${order.getPaid()}">
-                                <div th:case="true" class="mt-1 flex items-center gap-x-1.5">
-                                    <div class="flex-none rounded-full bg-green-500/20 p-1">
-                                        <div class="size-1.5 rounded-full bg-green-500"></div>
-                                    </div>
-                                    <p class="text-xs/5 text-gray-500">Payée</p>
-                                </div>
-                                <div th:case="false" class="mt-1 flex items-center gap-x-1.5">
-                                    <div class="flex-none rounded-full bg-red-500/20 p-1">
-                                        <div class="size-1.5 rounded-full bg-red-500"></div>
-                                    </div>
-                                    <p class="text-xs/5 text-gray-500">Non payée</p>
-                                </div>
-                                <div th:case="*" class="mt-1 flex items-center gap-x-1.5">
-                                    <div class="flex-none rounded-full bg-orange-500/20 p-1">
-                                        <div class="size-1.5 rounded-full bg-orange-500"></div>
-                                    </div>
-                                    <p class="text-xs/5 text-gray-500">Inconnu</p>
-                                </div>
-                            </div>
+                        <p class="text-gray-600" th:text="${order.getEmail()} + ' • ' + ${order.getDatetime_order()}">Mail & Date</p>
+                        <div class="mt-4">
+                            <p class="text-gray-800"><span class="font-bold text-orange-500">2x</span> Coq au Vin - 49.00€</p>
+                            <p class="text-gray-800"><span class="font-bold text-orange-500">1x</span> Crème Brûlée - 8.90€</p>
                         </div>
-                    </a>
-                </li>
-            </ul>
+                        <div class="border-t my-4"></div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">Total</span>
+                            <span class="text-orange-500 font-bold text-lg" th:text="${order.getPrice() + '€'}">Prix</span>
+                        </div>
+                        <div class="flex gap-4 mt-4">
+                            <a th:href="@{/order/edit/{id}(id=${order.getId()})}">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded">Détails</button>
+                            </a>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+    </main>
 
-</main>
-
-<!-- Footer -->
-<div th:include="fragments/footer :: footer"></div>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+</div>
 </body>
-
 </html>

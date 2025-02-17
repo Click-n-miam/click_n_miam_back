@@ -3,60 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Terminal Backend</title>
+    <title>Gestion des Plats</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
 </head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-4">
+        <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
+        <ul>
+            <li class="p-2 bg-gray-200 rounded mb-2"><a href="/"><i class="nav-icon fas fa-users"></i>Tableau de bord</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded"><a href="/order">Commandes</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="~#">Plats</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="#">Desserts</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/ingredient">Ingrédients</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/option">Options</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/">Paramètres</a></li>
+        </ul>
+    </aside>
 
-<body class="bg-white text-gray-800">
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Ajouter une option</h1>
 
-<!-- Header -->
-<div th:include="fragments/header :: header"></div>
-
-<!-- Navigation Bar -->
-<div th:include="fragments/navbar :: navbar"></div>
-
-<!-- Main Content -->
-<main class="py-10">
-
-    <div class="max-w-6xl mx-auto p-6">
-        <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>
-
-        <form th:action="@{/option/add}" th:object="${option}" method="post">
-            <div class="space-y-4">
-                <div class="flex flex-col">
-                    <label for="name" class="text-sm font-medium text-gray-700">Nom de l'option</label>
-                    <input type="text" id="name" name="name" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le nom de l'option" required>
-                </div>
-
-                <div class="flex flex-col">
-                    <label for="description" class="text-sm font-medium text-gray-700">Description</label>
-                    <input type="text" id="description" name="description" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez la description" required>
-                </div>
-
-                <div class="flex flex-col">
-                    <label for="price" class="text-sm font-medium text-gray-700">Prix (€)</label>
-                    <input type="number" id="price" name="price" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant" step="0.01" required>
-                </div>
-
-                <div class="flex justify-end space-x-4">
-                    <a th:href="@{/option/list}" class="text-gray-600 hover:text-gray-800">Annuler</a>
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>
-                </div>
+            <div class="mt-6 mb-6 text-left">
+                <button class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
+                    <a href="/ingredient/list">
+                        Retour
+                    </a>
+                </button>
             </div>
-        </form>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+            <form th:action="@{/option/add}" th:object="${option}" method="post">
+                <div class="space-y-4">
+                    <div class="flex flex-col">
+                        <label for="name" class="text-sm font-medium text-gray-700">Nom de l'option</label>
+                        <input type="text" id="name" name="name" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le nom de l'option" required>
+                    </div>
 
-    </div>
+                    <div class="flex flex-col">
+                        <label for="description" class="text-sm font-medium text-gray-700">Description</label>
+                        <input type="text" id="description" name="description" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez la description" required>
+                    </div>
 
-</main>
+                    <div class="flex flex-col">
+                        <label for="price" class="text-sm font-medium text-gray-700">Prix (€)</label>
+                        <input type="number" id="price" name="price" class="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Entrez le montant" step="0.01" required>
+                    </div>
 
-<!-- Footer -->
-<div th:include="fragments/footer :: footer"></div>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+                    <div class="flex justify-end space-x-4">
+                        <a th:href="@{/option/list}" class="text-gray-600 hover:text-gray-800">Annuler</a>
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sauvegarder</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
 </body>
-
 </html>

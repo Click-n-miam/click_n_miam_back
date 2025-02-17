@@ -6,17 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "meal_ingredients")
 public class MealIngredient {
 
-    @EmbeddedId
-    private MealIngredientId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
-    @MapsId("mealId") // Associe mealId à Meal
-    @JoinColumn(name = "meal_id")
+    @JoinColumn(name = "meal_id", nullable = false)
     private Meal meal;
 
     @ManyToOne
-    @MapsId("ingredientId") // Associe ingredientId à Ingredient
-    @JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "ingredient_id", nullable = false)
     private Ingredient ingredient;
 
     @Override
