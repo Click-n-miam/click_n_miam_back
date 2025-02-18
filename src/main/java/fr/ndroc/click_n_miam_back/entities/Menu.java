@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "menus")
@@ -28,15 +29,15 @@ public class Menu {
     @JoinColumn(name = "dessert_meal_id")
     private Meal dessertMeal;
 
-    public Menu() {
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "menu_options",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id")
+    )
+    private List<MenuOption> options;
 
-    public Menu(Integer id, LocalDate eat_date, Order order, Meal mainMeal, Meal dessertMeal) {
-        this.id = id;
-        this.eat_date = eat_date;
-        this.order = order;
-        this.mainMeal = mainMeal;
-        this.dessertMeal = dessertMeal;
+    public Menu() {
     }
 
     public Integer getId() { return id; }
@@ -53,6 +54,13 @@ public class Menu {
 
     public Meal getDessertMeal() { return dessertMeal; }
     public void setDessertMeal(Meal dessertMeal) { this.dessertMeal = dessertMeal; }
+
+    public List<MenuOption> getOptions() {
+        return options;
+    }
+    public void setOptions(List<MenuOption> options) {
+        this.options = options;
+    }
 
     @Override
     public String toString() {

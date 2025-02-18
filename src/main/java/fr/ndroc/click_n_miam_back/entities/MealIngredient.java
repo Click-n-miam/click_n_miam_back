@@ -8,14 +8,17 @@ public class MealIngredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @EmbeddedId
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "meal_id", nullable = false)
+    // @MapsId("mealId")
+    @JoinColumn(name = "meal_id")
     private Meal meal;
 
     @ManyToOne
-    @JoinColumn(name = "ingredient_id", nullable = false)
+    // @MapsId("ingredientId")
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     @Override

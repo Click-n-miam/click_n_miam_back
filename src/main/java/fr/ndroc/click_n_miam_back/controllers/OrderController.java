@@ -22,8 +22,9 @@ public class OrderController {
     @GetMapping(value={"/order", "/order/list"})
     public String showOrderList(Model model)
     {
-        model.addAttribute("orders", orderRepository.findAll());
+        model.addAttribute("orders", orderRepository.findAllWithMeals());
         model.addAttribute("orders_count", orderRepository.count());
+
         return "order/list";
     }
 

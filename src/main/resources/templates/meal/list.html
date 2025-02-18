@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Plats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside  class="w-64 bg-white shadow-md p-4" th:include="fragments/sidebar :: sidebar"></aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <div class="flex justify-between items-center mb-4">
+
+            <div class="relative w-full bg-gradient-to-r from-indigo-500 to-blue-500 text-white p-6 mb-5 flex justify-between items-center rounded-lg shadow-md">
+                <h1 class="text-2xl font-bold">Gestion des plats</h1>
+
+                <button class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
+                    <a href="/ingredient/formAdd">
+                        Ajouter un plat
+                    </a>
+                </button>
+            </div>
+
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Card -->
+            <div th:each="meal : ${meals}" class="bg-white rounded shadow overflow-hidden">
+                <img src="https://resize.prod.femina.ladmedia.fr/rblr/652,438/img/var/2020-03/aliments-confinement.jpg" alt="Image" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <h2 class="font-bold" th:text="${meal.getTitle()}">Nom / Titre</h2>
+                    <h2 class="font-bold" th:text="${meal.getDescription()}">Description</h2>
+                    <div class="mt-4" th:each="ingredient : ${meal.getIngredients()}">
+                        <p class="text-gray-800">
+                            <span class="font-bold text-orange-500">2x</span>
+                            <span th:text="${ingredient.toString()}"> Coq au Vin - 49.00€</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <span class="text-orange-500 font-bold">Prix</span>
+                        <div class="flex gap-2">
+                            <a th:href="@{/meal/edit/{id}(id = ${meal.getId()})}">
+                                <button class="text-gray-500 hover:text-black" title="Éditer">✏️</button>
+                            </a>
+                            <a class="text-sm text-red-600" th:href="@{/meal/delete/{id}(id = ${meal.getId()})}">
+                                <button class="text-gray-500 hover:text-black" title="Supprimer">🗑️</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
