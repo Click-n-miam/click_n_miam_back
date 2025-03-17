@@ -37,11 +37,11 @@
                     <div class="mt-4" th:each="ingredient : ${meal.getIngredients()}">
                         <p class="text-gray-800">
                             <span class="font-bold text-orange-500">2x</span>
-                            <span th:text="${ingredient.toString()}"> Coq au Vin - 49.00€</span>
+                            <span th:text="${ingredient.getName()}"></span>
+                            <span th:text="${ingredient.getAllergen() ? 'Allergen' : ''}"></span>
                         </p>
                     </div>
                     <div class="flex justify-between items-center mt-2">
-                        <span class="text-orange-500 font-bold">Prix</span>
                         <div class="flex gap-2">
                             <a th:href="@{/meal/edit/{id}(id = ${meal.getId()})}">
                                 <button class="text-gray-500 hover:text-black" title="Éditer">✏️</button>

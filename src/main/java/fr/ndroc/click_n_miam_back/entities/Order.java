@@ -19,7 +19,7 @@ public class Order {
     private String pay_method;
     private Boolean paid;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<Menu> menus;
 
     public Order() {

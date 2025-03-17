@@ -2,7 +2,7 @@ package fr.ndroc.click_n_miam_back.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="options")
@@ -14,6 +14,9 @@ public class Option {
     private String name;
     private String description;
     private Float price;
+
+    @ManyToMany(mappedBy = "options")
+    private Set<Menu> menus;
 
     public Option() {
     }

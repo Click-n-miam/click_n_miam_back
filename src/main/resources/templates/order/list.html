@@ -56,7 +56,8 @@
                             <div class="mt-4" th:each="option : ${menu.getOptions()}">
                                 <p class="text-gray-800">
                                     <span class="font-bold text-orange-500">2x</span>
-                                    <span th:text="${option.toString()}"> Coq au Vin - 49.00€</span>
+                                    <span th:text="${option.getName()}"></span>
+                                    <span th:text="'(' + ${option.getPrice()} + ')'"></span>
                                 </p>
                             </div>
                         </div>

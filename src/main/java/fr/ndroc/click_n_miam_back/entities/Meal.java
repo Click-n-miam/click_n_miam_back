@@ -2,8 +2,10 @@ package fr.ndroc.click_n_miam_back.entities;
 
 import fr.ndroc.click_n_miam_back.enums.MealType;
 import jakarta.persistence.*;
-import java.awt.*;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "meals")
@@ -16,6 +18,7 @@ public class Meal {
     private String title;
     private String description;
     private String image;
+    private Date proposed_at;
 
     @ManyToMany
     @JoinTable(
@@ -23,7 +26,7 @@ public class Meal {
             joinColumns = @JoinColumn(name = "meal_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
     )
-    private List<MealIngredient> ingredients;
+    private Set<Ingredient> ingredients;
 
     @Enumerated(EnumType.STRING)
     private MealType type;
@@ -50,11 +53,18 @@ public class Meal {
         this.type = type;
     }
 
-    public List<MealIngredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
-    public void setIngredients(List<MealIngredient> ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Date getProposed_at() {
+        return proposed_at;
+    }
+    public void setProposed_at(Date proposed_at) {
+        this.proposed_at = proposed_at;
     }
 
     @Override
