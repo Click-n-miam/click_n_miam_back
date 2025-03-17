@@ -46,7 +46,7 @@
     </div>
 
     <div class="py-10 max-w-6xl mx-auto p-6" th:switch="${orders}">
-        <h1 th:case="null" class="text-3xl font-semibold text-center mb-6">Aucune Option</h1>
+        <h1 th:case="null" class="text-3xl font-semibold text-center mb-6">Aucune commande</h1>
 
         <div th:case="*">
             <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>

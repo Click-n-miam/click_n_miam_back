@@ -1,10 +1,11 @@
 package fr.ndroc.click_n_miam_back.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "menus")
@@ -18,6 +19,7 @@ public class Menu {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Order order;
 
     @ManyToOne
@@ -28,15 +30,15 @@ public class Menu {
     @JoinColumn(name = "dessert_meal_id")
     private Meal dessertMeal;
 
-    public Menu() {
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "menu_options",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id")
+    )
+    private Set<Option> options;
 
-    public Menu(Integer id, LocalDate eat_date, Order order, Meal mainMeal, Meal dessertMeal) {
-        this.id = id;
-        this.eat_date = eat_date;
-        this.order = order;
-        this.mainMeal = mainMeal;
-        this.dessertMeal = dessertMeal;
+    public Menu() {
     }
 
     public Integer getId() { return id; }
@@ -53,6 +55,13 @@ public class Menu {
 
     public Meal getDessertMeal() { return dessertMeal; }
     public void setDessertMeal(Meal dessertMeal) { this.dessertMeal = dessertMeal; }
+
+    public Set<Option> getOptions() {
+        return options;
+    }
+    public void setOptions(Set<Option> options) {
+        this.options = options;
+    }
 
     @Override
     public String toString() {
