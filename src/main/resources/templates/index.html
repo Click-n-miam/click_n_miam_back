@@ -1,80 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Terminal Backend</title>
+    <title>Tableau de bord</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside  class="w-64 bg-white shadow-md p-4" th:include="fragments/sidebar :: sidebar"></aside>
 
-<body class="bg-white text-gray-800">
-
-<!-- Header -->
-<div th:include="fragments/header :: header"></div>
-
-<!-- Navigation Bar -->
-<div th:include="fragments/navbar :: navbar"></div>
-
-<!-- Main Content -->
-<main class="py-10">
-    <div class="max-w-7xl mx-auto px-4 mb-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 - line 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold">Gestion du Menu</h3>
-                <p class="mt-2 text-gray-600">Ajoutez ou modifiez des éléments de votre menu.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer le menu</button>
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <h1 class="text-2xl font-bold mb-4">Tableau de bord</h1>
+        <div class="grid grid-cols-5 gap-4 mb-6">
+            <div class="p-4 bg-green-100 rounded shadow bg-gradient-to-r from-green-400 to-green-600">
+                <p class="text-sm">Chiffre d'affaires</p>
+                <p class="text-xl font-bold">57.90€</p>
             </div>
-
-            <!-- Card 2 - line 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold"> Gestion des plats</h3>
-                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les plats</button>
+            <div class="p-4 rounded shadow bg-gradient-to-r from-purple-400 to-purple-600">
+                <p class="text-sm">Commandes totales</p>
+                <p class="text-xl font-bold">1</p>
             </div>
-
-            <!-- Card 3 - line 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des ingredients : ' + ${ingredients_count}"></h3>
-                <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Gérer les ingredients</button>
+            <div class="p-4 rounded shadow bg-gradient-to-r from-indigo-400 to-indigo-600">
+                <p class="text-sm">Panier moyen</p>
+                <p class="text-xl font-bold">57.90€</p>
+            </div>
+            <div class="p-4 rounded shadow bg-gradient-to-r from-yellow-400 to-yellow-600">
+                <p class="text-sm">Plats au menu</p>
+                <p class="text-xl font-bold">3</p>
+            </div>
+            <div class="p-4 rounded shadow bg-gradient-to-r from-pink-400 to-pink-600">
+                <p class="text-sm">Desserts au menu</p>
+                <p class="text-xl font-bold">3</p>
             </div>
         </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto px-4 mb-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 - line 2 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des commandes : ' + ${orders_count}"></h3>
-                <p class="mt-2 text-gray-600">Visualisez et gérez toutes les commandes actives.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">Voir les commandes</button>
-            </div>
-
-            <!-- Card 2 - line 2 -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-                <h3 class="text-green-600 text-xl font-semibold" th:text="'Gestion des options : ' + ${options_count}"></h3>
-                <p class="mt-2 text-gray-600">Créez ou modifiez des articles disponibles pour les commandes.</p>
-                <button class="mt-4 bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-500 transition">
-                    <a th:href="@{/option/list}">
-                        Gérer les options
-                    </a>
-                </button>
-            </div>
+        <!-- Commandes récentes -->
+        <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-lg font-bold mb-2">Commandes récentes</h2>
+            <table class="w-full text-left border-collapse">
+                <thead>
+                <tr class="border-b">
+                    <th class="p-2">N° Commande</th>
+                    <th class="p-2">Table</th>
+                    <th class="p-2">Articles</th>
+                    <th class="p-2">Total</th>
+                    <th class="p-2">Statut</th>
+                    <th class="p-2">Heure</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="border-b">
+                    <td class="p-2">#1739656529154</td>
+                    <td class="p-2">12</td>
+                    <td class="p-2">2x Coq au Vin, 1x Crème Brûlée</td>
+                    <td class="p-2 text-orange-500">57.90€</td>
+                    <td class="p-2"><span class="px-2 py-1 bg-gray-300 text-gray-700 rounded">pending</span></td>
+                    <td class="p-2">22:55:29</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
 
-</main>
+        <div th:switch="${week_menus}">
+            <h1 th:case="null" class="text-3xl font-semibold text-center mb-6">Aucun menu.</h1>
 
-<!-- Footer -->
-<div th:include="fragments/footer :: footer"></div>
+            <div th:case="*">
+                <div th:each="menu : ${week_menus}">
+                    <div class="bg-white rounded shadow p-6 mb-5">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-bold" th:text="${menu.getOrder().getReference()}">Référence</h2>
+                        </div>
+                        <p class="text-gray-600" th:text="${menu.getOrder().getEmail()}">Mail</p>
+                        <p class="text-gray-600" th:text="'Date commande : ' + ${menu.getOrder().getDatetime_order()}">Date cmd</p>
+                        <p class="text-gray-600" th:text="'Date miam : ' + ${menu.getEat_date()}">Date miam</p>
+                        <div class="border-t my-4"></div>
+                        <div class="mt-4">
+                            <p class="text-gray-800">
+                                <span class="font-bold text-orange-500">2x</span>
+                                <span th:text="${menu.getMainMeal().getTitle()}"> Coq au Vin - 49.00€</span>
+                            </p>
+                            <p class="text-gray-800">
+                                <span class="font-bold text-orange-500">1x</span>
+                                <span th:text="${menu.getDessertMeal().getTitle()}">Crème Brûlée - 8.90€</span>
+                            </p>
+                        </div>
+                        <div class="border-t my-4"></div>
+                        <div class="mt-4" th:each="option : ${menu.getOptions()}">
+                            <p class="text-gray-800">
+                                <span class="font-bold text-orange-500">2x</span>
+                                <span th:text="${option.toString()}"> Coq au Vin - 49.00€</span>
+                            </p>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+    </main>
+</div>
 </body>
-
 </html>

@@ -1,11 +1,11 @@
 package fr.ndroc.click_n_miam_back.interfaces;
 
 import fr.ndroc.click_n_miam_back.entities.Option;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OptionRepository extends CrudRepository<Option, Integer> {
+public interface OptionRepository extends JpaRepository<Option, Integer> {
 
 //    @RestResource(path = "search-by-name" )
 //    Iterable<Option> findByNameContaining(@Param("val") String name);

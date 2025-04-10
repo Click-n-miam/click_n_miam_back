@@ -1,65 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Terminal Backend</title>
+    <title>Tableau de bord</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
 </head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
 
-<body class="bg-white text-gray-800">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-4">
+        <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
+        <ul>
+            <li class="p-2 bg-gray-200 rounded mb-2"><a href="/"><i class="nav-icon fas fa-users"></i>Tableau de bord</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded"><a href="/order">Commandes</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="~#">Plats</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="#">Desserts</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/ingredient">Ingrédients</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/option">Options</a></li>
+            <li class="p-2 hover:bg-gray-200 rounded mb-2"><a href="/">Paramètres</a></li>
+        </ul>
+    </aside>
 
-<!-- Header -->
-<div th:include="fragments/header :: header"></div>
-
-<!-- Navigation Bar -->
-<div th:include="fragments/navbar :: navbar"></div>
-
-<!-- Main Content -->
-<main class="py-10">
-
-    <div class="max-w-6xl mx-auto p-6">
-        <h1 class="text-3xl font-semibold text-center mb-6">Liste des Commandes</h1>
-
-        <!-- Tableau des commandes -->
-        <div class="overflow-x-auto shadow-md rounded-lg bg-white">
-            <table class="min-w-full table-auto text-left">
-                <thead class="bg-gray-200">
-                <tr>
-                    <th class="py-3 px-6 text-sm font-medium text-gray-700">ID Commande</th>
-                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Nom de l'Étudiant</th>
-                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Date</th>
-                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Montant</th>
-                    <th class="py-3 px-6 text-sm font-medium text-gray-700">Actions</th>
-                </tr>
-                </thead>
-                <tbody class="text-gray-700">
-                <tr th:each="commande : ${commandes}">
-                    <td class="py-3 px-6 text-sm"></td>
-                    <td class="py-3 px-6 text-sm"></td>
-                    <td class="py-3 px-6 text-sm"></td>
-                    <td class="py-3 px-6 text-sm"></td>
-                    <td class="py-3 px-6 text-sm">
-                        <a href="#" class="text-blue-600 hover:text-blue-800">Modifier</a> |
-                        <a href="#" class="text-red-600 hover:text-red-800">Supprimer</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <h1 class="text-2xl font-bold mb-4">Tableau de bord</h1>
+        <div class="grid grid-cols-5 gap-4 mb-6">
+            <div class="p-4 bg-green-100 rounded shadow">
+                <p class="text-sm">Chiffre d'affaires</p>
+                <p class="text-xl font-bold">57.90€</p>
+            </div>
+            <div class="p-4 bg-blue-100 rounded shadow">
+                <p class="text-sm">Commandes totales</p>
+                <p class="text-xl font-bold">1</p>
+            </div>
+            <div class="p-4 bg-purple-100 rounded shadow">
+                <p class="text-sm">Panier moyen</p>
+                <p class="text-xl font-bold">57.90€</p>
+            </div>
+            <div class="p-4 bg-yellow-100 rounded shadow">
+                <p class="text-sm">Plats au menu</p>
+                <p class="text-xl font-bold">3</p>
+            </div>
+            <div class="p-4 bg-red-100 rounded shadow">
+                <p class="text-sm">Desserts au menu</p>
+                <p class="text-xl font-bold">3</p>
+            </div>
         </div>
-    </div>
 
-</main>
-
-<!-- Footer -->
-<div th:include="fragments/footer :: footer"></div>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+    </main>
+</div>
 </body>
-
 </html>
