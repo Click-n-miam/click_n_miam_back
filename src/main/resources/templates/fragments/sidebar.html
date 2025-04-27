@@ -1,39 +1,44 @@
 <div th:fragment="sidebar">
-    <h2 class="text-lg font-bold mb-4">Click'n'Miam - Bot 1.0</h2>
-    <div class="flex justify-center mb-4">
-        <img th:src="@{/images/logo.jpg}" alt="Click'n'Miam Logo" class="h-12">
+    <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+        <div class="p-4 border-b border-gray-200 flex items-center space-x-2">
+            <div class="bg-blue-500 text-white p-2 rounded">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h1 class="text-xl font-bold">MealManager</h1>
+        </div>
+        <nav class="flex-1 overflow-y-auto p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="dashboard-link flex items-center p-2 rounded-lg text-gray-900 hover:bg-gray-100">
+                        <i class="fas fa-home w-5 h-5 mr-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="meal-management-link flex items-center p-2 rounded-lg text-gray-900 hover:bg-gray-100">
+                        <i class="fas fa-hamburger w-5 h-5 mr-2"></i>
+                        <span>Meal Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="orders-list-link flex items-center p-2 rounded-lg text-gray-900 hover:bg-gray-100">
+                        <i class="fas fa-clipboard-list w-5 h-5 mr-2"></i>
+                        <span>Orders List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menus-link flex items-center p-2 rounded-lg text-gray-900 hover:bg-gray-100">
+                        <i class="fas fa-calendar-alt w-5 h-5 mr-2"></i>
+                        <span>Menus</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-gray-200">
+            <a href="#" class="flex items-center p-2 rounded-lg text-gray-900 hover:bg-gray-100">
+                <i class="fas fa-cog w-5 h-5 mr-2"></i>
+                <span>Settings</span>
+            </a>
+        </div>
     </div>
-    <ul class="space-y-2">
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-tachometer-alt"></i>
-            <a href="/">Tableau de bord</a>
-        </li>
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-wrench"></i>
-            <a href="/">Paramètres</a>
-        </li>
-        <hr>
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-receipt"></i>
-            <a href="/order">Commandes</a>
-        </li>
-        <hr>
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-utensils"></i>
-            <a href="/meal">Plats</a>
-        </li>
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-ice-cream"></i>
-            <a href="#">Desserts</a>
-        </li>
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-seedling"></i>
-            <a href="/ingredient">Ingrédients</a>
-        </li>
-        <li class="p-2 flex items-center space-x-2 hover:bg-gray-200 rounded border-l-4 border-transparent hover:border-orange-500">
-            <i class="fas fa-cogs"></i>
-            <a href="/option">Options</a>
-        </li>
-    </ul>
-
 </div>

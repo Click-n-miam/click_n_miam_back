@@ -14,41 +14,163 @@
 
     <!-- Main Content -->
     <main class="flex-1 p-6">
-        <div class="flex justify-between items-center mb-4">
-
-            <div class="relative w-full bg-gradient-to-r from-indigo-500 to-blue-500 text-white p-6 mb-5 flex justify-between items-center rounded-lg shadow-md">
-                <h1 class="text-2xl font-bold">Gestion des plats</h1>
-
-                <button class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
-                    <a href="/ingredient/formAdd">
-                        Ajouter un plat
-                    </a>
+        <!-- Meal Management View -->
+        <div id="meal-management-view" class="hidden space-y-6">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold">Meal Management</h1>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i>
+                    Add New Meal
                 </button>
             </div>
 
-        </div>
-        <div class="grid grid-cols-3 gap-6">
-            <!-- Card -->
-            <div th:each="meal : ${meals}" class="bg-white rounded shadow overflow-hidden">
-                <img src="https://resize.prod.femina.ladmedia.fr/rblr/652,438/img/var/2020-03/aliments-confinement.jpg" alt="Image" class="w-full h-40 object-cover">
-                <div class="p-4">
-                    <h2 class="font-bold" th:text="${meal.getTitle()}">Nom / Titre</h2>
-                    <h2 class="font-bold" th:text="${meal.getDescription()}">Description</h2>
-                    <div class="mt-4" th:each="ingredient : ${meal.getIngredients()}">
-                        <p class="text-gray-800">
-                            <span class="font-bold text-orange-500">2x</span>
-                            <span th:text="${ingredient.getName()}"></span>
-                            <span th:text="${ingredient.getAllergen() ? 'Allergen' : ''}"></span>
-                        </p>
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-semibold">Meal Gallery</h2>
+                <div class="relative">
+                    <select class="bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm">
+                        <option>All Types</option>
+                        <option>Main</option>
+                        <option>Side</option>
+                        <option>Dairy</option>
+                        <option>Dessert</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Main Course Items -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-NRvZtKqPbUHEGQHz1UIm7x8y288lc8.png" alt="Grilled Chicken" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded">main</span>
                     </div>
-                    <div class="flex justify-between items-center mt-2">
-                        <div class="flex gap-2">
-                            <a th:href="@{/meal/edit/{id}(id = ${meal.getId()})}">
-                                <button class="text-gray-500 hover:text-black" title="Éditer">✏️</button>
-                            </a>
-                            <a class="text-sm text-red-600" th:href="@{/meal/delete/{id}(id = ${meal.getId()})}">
-                                <button class="text-gray-500 hover:text-black" title="Supprimer">🗑️</button>
-                            </a>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Grilled Chicken</h3>
+                        <p class="text-sm text-gray-600">Herb marinated grilled chicken</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-NRvZtKqPbUHEGQHz1UIm7x8y288lc8.png" alt="Vegetable Pasta" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded">main</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Vegetable Pasta</h3>
+                        <p class="text-sm text-gray-600">Pasta with fresh vegetables</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Dish Items -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-uwpBIrwrPoGDYvUkocf1hRGFtOCzyR.png" alt="Rice Pilaf" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">side</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Rice Pilaf</h3>
+                        <p class="text-sm text-gray-600">Seasoned rice with vegetables</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-uwpBIrwrPoGDYvUkocf1hRGFtOCzyR.png" alt="Garden Salad" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">side</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Garden Salad</h3>
+                        <p class="text-sm text-gray-600">Fresh mixed greens with vinaigrette</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dairy Items -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-lvUcdjZZphXPIzNGEeRgcQ0uqvPhZO.png" alt="Yogurt" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">dairy</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Yogurt</h3>
+                        <p class="text-sm text-gray-600">Greek yogurt with berries and granola</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dessert Items -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-iEFmy67WJSS7Up5eOBNoyKhBgu3nCG.png" alt="Chocolate Pudding" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">dessert</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Chocolate Pudding</h3>
+                        <p class="text-sm text-gray-600">Rich chocolate pudding with berries</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <div class="relative">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-iEFmy67WJSS7Up5eOBNoyKhBgu3nCG.png" alt="Fruit Salad" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">dessert</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Fruit Salad</h3>
+                        <p class="text-sm text-gray-600">Fresh seasonal fruits</p>
+                        <div class="flex justify-end mt-2 space-x-2">
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
