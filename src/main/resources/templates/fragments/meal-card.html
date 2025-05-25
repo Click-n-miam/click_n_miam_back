@@ -1,0 +1,11 @@
+<!-- Meal Card -->
+<div class="relative rounded-lg overflow-hidden" th:fragment="mealCard(name, src, count)">
+    <img th:src="${src}" th:alt="${name}" class="w-full h-48 object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+        <div class="p-4 text-white">
+            <h3 class="font-semibold" th:text="${name}">Meal Name</h3>
+        </div>
+    </div>
+    <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold"
+         th:text="${count}">0</div>
+</div>

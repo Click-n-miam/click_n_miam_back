@@ -6,20 +6,8 @@
     <title>Student Meal Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4f46e5',
-                        secondary: '#8b5cf6',
-                        accent: '#f43f5e',
-                        light: '#f3f4f6',
-                    }
-                }
-            }
-        }
-    </script>
+    <script th:src="@{/js/tailwind-config.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
 </head>
 <body class="bg-gray-50">
 <div class="flex h-screen">
@@ -34,163 +22,10 @@
 
         <!-- Content Area -->
         <main class="flex-1 overflow-y-auto p-6">
-            <!-- Dashboard View -->
-            <div id="dashboard-view" class="space-y-8">
-                <h1 class="text-2xl font-bold">Dashboard</h1>
 
-                <!-- Quick Actions -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Add Meal Card -->
-                    <div class="bg-blue-500 text-white rounded-lg p-6 flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-plus-circle text-xl mr-2"></i>
-                            <h3 class="text-xl font-semibold">Add Meal</h3>
-                        </div>
-                        <p class="text-sm mb-4">Add a new meal to the database</p>
-                        <button class="mt-auto bg-white text-blue-500 py-2 px-4 rounded-md hover:bg-blue-50 transition-colors">
-                            Add Meal
-                        </button>
-                    </div>
-
-                    <!-- View Orders Card -->
-                    <div class="bg-indigo-500 text-white rounded-lg p-6 flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-list-ul text-xl mr-2"></i>
-                            <h3 class="text-xl font-semibold">View Orders</h3>
-                        </div>
-                        <p class="text-sm mb-4">See list of meal orders for the week</p>
-                        <button class="mt-auto bg-white text-indigo-500 py-2 px-4 rounded-md hover:bg-indigo-50 transition-colors">
-                            View Orders
-                        </button>
-                    </div>
-
-                    <!-- Weekly Menu Card -->
-                    <div class="bg-purple-500 text-white rounded-lg p-6 flex flex-col">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-calendar-week text-xl mr-2"></i>
-                            <h3 class="text-xl font-semibold">Weekly Menu</h3>
-                        </div>
-                        <p class="text-sm mb-4">View complete menu for next days</p>
-                        <button class="mt-auto bg-white text-purple-500 py-2 px-4 rounded-md hover:bg-purple-50 transition-colors">
-                            View Menu
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Meal Counts -->
-                <div>
-                    <h2 class="text-xl font-semibold mb-4 bg-blue-50 p-3 rounded-lg">Tuesday (Tuesday, Apr 29)</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <!-- Main Course -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-NRvZtKqPbUHEGQHz1UIm7x8y288lc8.png" alt="Grilled Chicken" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Grilled Chicken</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-
-                        <!-- Side Dish -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-uwpBIrwrPoGDYvUkocf1hRGFtOCzyR.png" alt="Rice Pilaf" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Rice Pilaf</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-
-                        <!-- Vegetable -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-NRvZtKqPbUHEGQHz1UIm7x8y288lc8.png" alt="Vegetable Pasta" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Vegetable Pasta</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-
-                        <!-- Salad -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-uwpBIrwrPoGDYvUkocf1hRGFtOCzyR.png" alt="Garden Salad" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Garden Salad</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-
-                        <!-- Dairy -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-lvUcdjZZphXPIzNGEeRgcQ0uqvPhZO.png" alt="Yogurt" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Yogurt</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                1
-                            </div>
-                        </div>
-
-                        <!-- Dessert -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-iEFmy67WJSS7Up5eOBNoyKhBgu3nCG.png" alt="Chocolate Pudding" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Chocolate Pudding</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h2 class="text-xl font-semibold mb-4 bg-purple-50 p-3 rounded-lg">Saturday (Saturday, May 3)</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <!-- Main Course -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-NRvZtKqPbUHEGQHz1UIm7x8y288lc8.png" alt="Grilled Chicken" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Grilled Chicken</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-
-                        <!-- Side Dish -->
-                        <div class="relative rounded-lg overflow-hidden">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-uwpBIrwrPoGDYvUkocf1hRGFtOCzyR.png" alt="Rice Pilaf" class="w-full h-48 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <div class="p-4 text-white">
-                                    <h3 class="font-semibold">Rice Pilaf</h3>
-                                </div>
-                            </div>
-                            <div class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold">
-                                2
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Dashboard content -->
+            <div class="ml-64 p-6">
+                <div th:replace="pages/dashboard :: dashboardContent"></div>
             </div>
 
             <!-- Meal Management View -->
@@ -618,8 +453,6 @@
         </main>
     </div>
 </div>
-
-<script th:src="@{/js/script.js}"></script>
 
 </body>
 </html>

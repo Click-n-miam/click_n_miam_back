@@ -1,0 +1,14 @@
+<!-- fragments/meal-day.html -->
+<div th:fragment="mealDay(dayLabel)">
+    <h2 class="text-xl font-semibold mb-4 bg-blue-50 p-3 rounded-lg" th:text="${dayLabel}">Day Name</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+        <!-- Cards inclus dynamiquement -->
+        <div th:replace="fragments/meal-card :: mealCard('Grilled Chicken', '/images/grilled-chicken.png', 2)"></div>
+        <div th:replace="fragments/meal-card :: mealCard('Rice Pilaf', '/images/rice-pilaf.png', 2)"></div>
+        <div th:replace="fragments/meal-card :: mealCard('Vegetable Pasta', '/images/vegetable-pasta.png', 2)"></div>
+        <div th:replace="fragments/meal-card :: mealCard('Garden Salad', '/images/garden-salad.png', 2)"></div>
+        <div th:replace="fragments/meal-card :: mealCard('Yogurt', '/images/yogurt.png', 1)"></div>
+        <div th:replace="fragments/meal-card :: mealCard('Chocolate Pudding', '/images/pudding.png', 2)"></div>
+    </div>
+</div>
