@@ -39,7 +39,12 @@
 
             <div>
                 <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                <input type="text" id="type" name="type" th:value="${meal.getType()}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Choisissez le type du plat">
+                <select th:field="*{type}" id="type" name="type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <option th:each="type : ${mealTypes}"
+                            th:value="${type}"
+                            th:text="${type}"
+                    >
+                    </option>
             </div>
 
 

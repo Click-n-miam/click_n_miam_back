@@ -2,6 +2,7 @@ package fr.ndroc.click_n_miam_back.controllers;
 
 import fr.ndroc.click_n_miam_back.entities.Meal;
 import fr.ndroc.click_n_miam_back.entities.Meal;
+import fr.ndroc.click_n_miam_back.enums.MealType;
 import fr.ndroc.click_n_miam_back.interfaces.MealRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,15 @@ public class MealController {
     public String showMealList(Model model)
     {
         model.addAttribute("meals", mealRepository.findAll());
+
         return "meal/list";
     }
 
     @GetMapping("/meal/formAdd")
     public String formAdd(Model model)
     {
+        model.addAttribute("mealTypes", MealType.values());
+
         return "meal/add";
     }
 
@@ -47,6 +51,8 @@ public class MealController {
     public String showMeal(@PathVariable("id") Integer id, Model model)
     {
         model.addAttribute("meal", mealRepository.findById(id).orElseThrow(()->new RuntimeException("Meal " + id + " not found") ) );
+        model.addAttribute("mealTypes", MealType.values());
+
         return "meal/edit";
     }
 
@@ -54,6 +60,7 @@ public class MealController {
     public String updateMeal(@Valid Meal meal, BindingResult bindingResult, Model model)
     {
         mealRepository.save(meal);
+
         return "redirect:/meal/list";
     }
 
@@ -62,6 +69,7 @@ public class MealController {
     {
         Meal meal = mealRepository.findById(id).orElseThrow(()->new RuntimeException("Meal " + id + " not found") );
         mealRepository.delete(meal);
+
         return "redirect:/meal/list";
     }
 }
